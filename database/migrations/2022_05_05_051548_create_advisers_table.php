@@ -15,6 +15,13 @@ class CreateAdvisersTable extends Migration
     {
         Schema::create('advisers', function (Blueprint $table) {
             $table->id();
+
+            $table->string('dni');
+            $table->string('full_name');
+            $table->string('faculty');
+            $table->string('email');
+            $table->string('orcid');
+
             $table->timestamps();
         });
     }

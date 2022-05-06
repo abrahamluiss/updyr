@@ -43,15 +43,15 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row ">
-                                    <label for="Adviser" class="col-sm-2 col-form-label">Asesor</label>
+                                    <label for="adviser" class="col-sm-2 col-form-label">Asesor</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="Adviser" aria-describedby="Adviser"
-                                            name="Adviser" autocomplete="off" placeholder="Asesor"
+                                        <input type="text" class="form-control" id="adviser" aria-describedby="adviser"
+                                            name="adviser" autocomplete="off" placeholder="Asesor"
                                             class="form-control-plaintext">
                                     </div>
                                 </div>
                                 <div class="mb-3 row ">
-                                    <label for="Adviser" class="col-sm-2 col-form-label">Programa</label>
+                                    <label for="program" class="col-sm-2 col-form-label">Programa</label>
                                     <div class="col-sm-10">
 
                                         <select class="form-select" aria-label="Default select example">
