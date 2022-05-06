@@ -25,7 +25,7 @@ class CertificateController extends Controller
      */
     public function create()
     {
-        //
+        return view('certificate.create');
     }
 
     /**
