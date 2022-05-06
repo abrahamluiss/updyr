@@ -20,7 +20,7 @@
                     <div id="typography">
 
                         <div class="row m-6 col-12">
-                            <form action="{{ route('author.store') }}" method="POST">
+                            <form action="{{ route('adviser.store') }}" method="POST">
                                 @csrf
                                 @method('POST')
 
@@ -60,7 +60,7 @@
                                     <label for="orcid" class="col-sm-2 col-form-label">orcid</label>
                                     <div class="col-sm-10">
                                         <input type="orcid" class="form-control" id="orcid" aria-describedby="orcid"
-                                            name="orcid" autocomplete="off" placeholder="Correo"
+                                            name="orcid" autocomplete="off" placeholder="ORCID"
                                             class="form-control-plaintext">
                                     </div>
                                 </div>

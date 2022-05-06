@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAdviserRequest;
 use App\Http\Requests\UpdateAdviserRequest;
 use App\Models\Adviser;
+use Illuminate\Http\Request;
+
 
 class AdviserController extends Controller
 {
@@ -15,7 +17,9 @@ class AdviserController extends Controller
      */
     public function index()
     {
-        return view('adviser.index');
+        $advisers = Adviser::orderByDesc('id')->paginate(5);
+
+        return view('adviser.index', compact('advisers'));
     }
 
     /**
@@ -34,9 +38,23 @@ class AdviserController extends Controller
      * @param  \App\Http\Requests\StoreAdviserRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAdviserRequest $request)
+    public function store(Request $request)
     {
-        //
+        $rules =[
+            'dni' => 'required|min:3',
+        ];
+
+        $this->validate($request, $rules);
+        $adviser = new Adviser();
+        $adviser->dni = $request->input('dni');
+        $adviser->full_name = $request->input('fullName');
+        $adviser->faculty = $request->input('faculty');
+        $adviser->email = $request->input('email');
+        $adviser->orcid = $request->input('orcid');
+        $adviser->save();
+
+        $notification = 'Asesor registrado correctamente';
+        return redirect('adviser')->with(compact('notification'));
     }
 
     /**
