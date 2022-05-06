@@ -36,7 +36,19 @@ class AuthorController extends Controller
      */
     public function store(StoreAuthorRequest $request)
     {
-        //
+        $rules =[
+            'name' => 'required|min:3',
+        ];
+
+
+        $this->validate($request, $rules);
+        $specialty = new Speciality();
+        $specialty->name = $request->input('name');
+        $specialty->description = $request->input('description');
+        $specialty->save();
+
+        $notification = 'Especialidad registrado correctamente';
+        return redirect('specialties')->with(compact('notification'));
     }
 
     /**
