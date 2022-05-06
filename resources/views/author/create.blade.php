@@ -28,16 +28,16 @@
                                     <label for="dni" class="col-sm-2 col-form-label">DNI</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="dni" aria-describedby="dni"
-                                            name="dni" autocomplete="off" placeholder="Titulo"
-                                            class="form-control-plaintext">
+                                            name="dni" autocomplete="off" placeholder="DNI"
+                                            class="form-control-plaintext"required>
                                     </div>
                                 </div>
                                 <div class="mb-3 row ">
                                     <label for="fullName" class="col-sm-2 col-form-label">Nombres Completos</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="fullName" aria-describedby="fullName"
-                                            name="fullName" autocomplete="off" placeholder="Autor"
-                                            class="form-control-plaintext">
+                                            name="fullName" autocomplete="off" placeholder="Nombres Completos"
+                                            class="form-control-plaintext"required>
                                     </div>
                                 </div>
                                 <div class="mb-3 row ">
@@ -45,7 +45,7 @@
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="n_boucher" aria-describedby="n_boucher"
                                             name="n_boucher" autocomplete="off" placeholder="Nª Boucher"
-                                            class="form-control-plaintext">
+                                            class="form-control-plaintext"required>
                                     </div>
                                 </div>
                                 <div class="mb-3 row ">
@@ -53,14 +53,14 @@
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="amount_paid" aria-describedby="amount_paid"
                                             name="amount_paid" autocomplete="off" placeholder="Monto Pagado"
-                                            class="form-control-plaintext">
+                                            class="form-control-plaintext"required>
                                     </div>
                                 </div>
                                 <div class="mb-3 row ">
                                     <label for="program" class="col-sm-2 col-form-label">Programa</label>
                                     <div class="col-sm-10">
 
-                                        <select class="form-select" aria-label="Default select example">
+                                        <select class="form-select" name="program" aria-label="Default select example">
                                             <option value="Bachiller">Bachiller</option>
                                             <option value="Titulo">Titulo</option>
                                             <option value="Segunda Especialidad">Segunda Especialidad</option>

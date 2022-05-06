@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAuthorRequest;
 use App\Http\Requests\UpdateAuthorRequest;
 use App\Models\Author;
+use Illuminate\Http\Request;
+
 
 class AuthorController extends Controller
 {
@@ -15,7 +17,8 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        return view('author.index');
+        $authors = Author::orderByDesc('id')->paginate(5);
+        return view('author.index', compact('authors'));
     }
 
     /**
@@ -34,21 +37,24 @@ class AuthorController extends Controller
      * @param  \App\Http\Requests\StoreAuthorRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAuthorRequest $request)
+    public function store(Request $request)
     {
+        // dd($request->all());
         $rules =[
-            'name' => 'required|min:3',
+            'dni' => 'required|min:3',
         ];
 
-
         $this->validate($request, $rules);
-        $specialty = new Speciality();
-        $specialty->name = $request->input('name');
-        $specialty->description = $request->input('description');
-        $specialty->save();
+        $author = new Author();
+        $author->dni = $request->input('dni');
+        $author->full_name = $request->input('fullName');
+        $author->n_boucher = $request->input('n_boucher');
+        $author->amount_paid = $request->input('amount_paid');
+        $author->program = $request->input('program');
+        $author->save();
 
-        $notification = 'Especialidad registrado correctamente';
-        return redirect('specialties')->with(compact('notification'));
+        $notification = 'Author registrado correctamente';
+        return redirect('author')->with(compact('notification'));
     }
 
     /**
