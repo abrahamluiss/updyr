@@ -1,7 +1,6 @@
 @extends('layouts.app', ['activePage' => 'certificate', 'titlePage' => __('Certificados')])
 @push('buttons')
-    <a class="btn btn-danger mr-4"
-        href="{{ route('certificate.create') }}">
+    <a class="btn btn-danger mr-4" href="{{ route('certificate.create') }}">
         <i class="material-icons">add</i>
         <span>Crear</span>
         <div class="ripple-container"></div>
@@ -14,132 +13,109 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">Simple Table</h4>
-                            <p class="card-category"> Here is a subtitle for this table</p>
+                            <h4 class="card-title ">Certificados</h4>
+                            @if (session('notification'))
+                                <div class="card-body">
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('notification') }}
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead class=" text-primary">
                                         <th>
-                                            ID
+                                            Nº
                                         </th>
                                         <th>
-                                            Name
+                                            Title
                                         </th>
                                         <th>
-                                            Country
+                                            Autor
                                         </th>
                                         <th>
-                                            City
+                                            Asesor
                                         </th>
                                         <th>
-                                            Salary
+                                            Programa
+                                        </th>
+                                        <th>
+                                            Facultad
+                                        </th>
+                                        <th>
+                                            Originalidad
+                                        </th>
+                                        <th>
+                                            Similitud
+                                        </th>
+                                        <th>
+                                            Fecha
+                                        </th>
+                                        <th>
+                                            Codigo
+                                        </th>
+                                        <th>
+                                            Observación
+                                        </th>
+                                        <th>
+                                            OPC
                                         </th>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                1
-                                            </td>
-                                            <td>
-                                                Dakota Rice
-                                            </td>
-                                            <td>
-                                                Niger
-                                            </td>
-                                            <td>
-                                                Oud-Turnhout
-                                            </td>
-                                            <td class="text-primary">
-                                                $36,738
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                2
-                                            </td>
-                                            <td>
-                                                Minerva Hooper
-                                            </td>
-                                            <td>
-                                                Curaçao
-                                            </td>
-                                            <td>
-                                                Sinaai-Waas
-                                            </td>
-                                            <td class="text-primary">
-                                                $23,789
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                3
-                                            </td>
-                                            <td>
-                                                Sage Rodriguez
-                                            </td>
-                                            <td>
-                                                Netherlands
-                                            </td>
-                                            <td>
-                                                Baileux
-                                            </td>
-                                            <td class="text-primary">
-                                                $56,142
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                4
-                                            </td>
-                                            <td>
-                                                Philip Chaney
-                                            </td>
-                                            <td>
-                                                Korea, South
-                                            </td>
-                                            <td>
-                                                Overland Park
-                                            </td>
-                                            <td class="text-primary">
-                                                $38,735
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                5
-                                            </td>
-                                            <td>
-                                                Doris Greene
-                                            </td>
-                                            <td>
-                                                Malawi
-                                            </td>
-                                            <td>
-                                                Feldkirchen in Kärnten
-                                            </td>
-                                            <td class="text-primary">
-                                                $63,542
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                6
-                                            </td>
-                                            <td>
-                                                Mason Porter
-                                            </td>
-                                            <td>
-                                                Chile
-                                            </td>
-                                            <td>
-                                                Gloucester
-                                            </td>
-                                            <td class="text-primary">
-                                                $78,615
-                                            </td>
-                                        </tr>
+                                        @foreach ($certificates as $certificate)
+                                            <tr>
+                                                <td>
+                                                    {{ $certificate->id }}
+                                                </td>
+                                                <td>
+                                                    {{ $certificate->title }}
+                                                </td>
+                                                <td>
+                                                    {{ $certificate->authors->full_name }}
+                                                </td>
+                                                <td>
+                                                    {{ $certificate->advisers->full_name }}
+
+                                                </td>
+                                                <td>
+                                                    {{ $certificate->title }}
+                                                </td>
+                                                <td>
+                                                    {{ $certificate->faculty }}
+                                                </td>
+                                                <td>
+                                                    {{ $certificate->originality }}
+                                                </td>
+                                                <td>
+                                                    {{ $certificate->similitude }}
+                                                </td>
+                                                <td>
+                                                    {{ $certificate->date }}
+                                                </td>
+                                                <td>
+                                                    {{ str_pad($certificate->id,4,'0', STR_PAD_LEFT ) }}-{{ now()->year }}
+                                                </td>
+                                                <td>
+                                                   @if ($certificate->observation == NULL)
+                                                    -
+                                                    @else
+                                                    {{ $certificate->observation }}
+                                                   @endif
+                                                </td>
+                                                <td>
+                                                    <div class="dropdown">
+
+                                                        <a href="#" type="button" class="btn btn-primary">Editar</a>
+                                                        <a href="#" type="button" class="btn btn-danger">Eliminar</a>
+
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

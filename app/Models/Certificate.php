@@ -15,15 +15,21 @@ class Certificate extends Model
         'originality',
         'similitude',
         'date',
-        'code',
+        // 'code',
         'observation',
     ];
     public function authors()
     {
-        return $this->belongsToMany(Author::class,'author_id');
+        return $this->belongsTo(Author::class,'author_id');
     }
     public function advisers()
     {
-        return $this->belongsToMany(Adviser::class,'adviser_id');
+        return $this->belongsTo(Adviser::class,'adviser_id');
     }
+    // public static function boot(){
+    //     parent::boot();
+    //     static::creating(function($model){
+    //         $model->code = Certificate::where('code', $model->code)->max('code')+1;
+    //     });
+    // }
 }

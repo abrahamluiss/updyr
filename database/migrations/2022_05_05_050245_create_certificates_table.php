@@ -21,8 +21,8 @@ class CreateCertificatesTable extends Migration
             $table->string('originality');
             $table->string('similitude');
             $table->string('date');
-            $table->string('code');
-            $table->string('observation');
+            // $table->string('code');
+            $table->string('observation')->nullable();
 
             $table->timestamps();
         });

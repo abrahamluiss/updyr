@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCertificateRequest;
 use App\Http\Requests\UpdateCertificateRequest;
+use App\Models\Adviser;
+use App\Models\Author;
 use App\Models\Certificate;
+use Illuminate\Http\Request;
+
 
 class CertificateController extends Controller
 {
@@ -15,7 +19,8 @@ class CertificateController extends Controller
      */
     public function index()
     {
-        return view('certificate.index');
+        $certificates = Certificate::orderByDesc('id')->paginate(5);
+        return view('certificate.index', compact('certificates'));
     }
 
     /**
@@ -25,7 +30,10 @@ class CertificateController extends Controller
      */
     public function create()
     {
-        return view('certificate.create');
+        $authors = Author::get();
+        $advisers = Adviser::get();
+
+        return view('certificate.create',compact('authors', 'advisers'));
     }
 
     /**
@@ -34,9 +42,37 @@ class CertificateController extends Controller
      * @param  \App\Http\Requests\StoreCertificateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCertificateRequest $request)
+    public function store(Request $request)
     {
-        //
+        $authorId = $request->input('author');
+        $chain1 = $authorId;
+        $separator1 = "-";
+        $separatedAuthor = explode($separator1, $chain1);
+
+        $advisersId = $request->input('adviser');
+        $chain = $advisersId;
+        $separator = "-";
+        $separatedAdviser = explode($separator, $chain);
+
+        $certificate = new Certificate();
+        $certificate->title = $request->input('title');
+        $certificate->author_id = (int)$separatedAuthor[0];
+        $certificate->adviser_id = (int)$separatedAdviser[0];
+        $certificate->program = $request->input('program');
+        $certificate->faculty = $request->input('faculty');
+        $certificate->originality = $request->input('originality');
+        $certificate->similitude = $request->input('similitude');
+        $certificate->date = $request->input('date');
+        $certificate->observation = $request->input('observation');
+        $certificate->save();
+
+        if ($certificate) {
+
+            $notification = 'La cita se ha registrado correctamente!';
+        } else {
+            $notification = 'Ocurrio un problema al registrar la cita médica.';
+        }
+        return redirect('certificate')->with(compact('notification'));
     }
 
     /**
