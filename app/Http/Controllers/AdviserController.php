@@ -15,7 +15,7 @@ class AdviserController extends Controller
      */
     public function index()
     {
-        //
+        return view('adviser.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class AdviserController extends Controller
      */
     public function create()
     {
-        //
+        return view('adviser.create');
     }
 
     /**

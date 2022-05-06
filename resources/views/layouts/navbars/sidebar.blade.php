@@ -18,14 +18,14 @@
                     <p>{{ __('Certificados') }}</p>
                 </a>
             </li>
-            <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('typography') }}">
+            <li class="nav-item{{ $activePage == 'author' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('author.index') }}">
                     <i class="material-icons">library_books</i>
                     <p>{{ __('Autores') }}</p>
                 </a>
             </li>
-            <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('typography') }}">
+            <li class="nav-item{{ $activePage == 'adviser' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('adviser.index') }}">
                     <i class="material-icons">library_books</i>
                     <p>{{ __('Asesores') }}</p>
                 </a>
